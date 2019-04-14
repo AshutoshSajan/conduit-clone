@@ -1,0 +1,212 @@
+@import url("https://fonts.googleapis.com/css?family=Titillium+Web:300,400,600,700");
+@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700");
+
+body {
+	font-family: 'Titillium Web', sans-serif;
+}
+
+:root {
+	font-size: 18px;
+
+}
+
+/*===========================*/
+/*header section*/
+/*===========================*/
+.conduit {
+	color: #5cb85c;
+	font-weight: 700;
+	font-size: 1.5rem;
+}
+
+.login-sec {
+	display: flex;
+	justify-content: space-between;
+}
+
+.login-sec li a {
+	margin-right: 10px;
+	color: #999;
+	text-transform: capitalize;
+	font-family: 'Source Sans Pro', sans-serif;
+}
+
+/*===========================*/
+/*hero section*/
+/*===========================*/
+.hero-sec {
+	background: #5cb85c;
+	padding: 20px;
+	text-align: center;
+	color: #fff;
+}
+
+.hero-sec h2 {
+	font-size: 50px;
+	font-weight: bold;
+	text-shadow: 0 1px 3px rgba(0,0,0,.3);
+}
+
+.hero-sec h3 {
+	font-size: 30px;
+}
+
+.user-info img{
+	width: 30px;
+	border-radius: 50%;
+	margin-right: 10px;
+}
+.user-info {
+	display: flex;
+	align-items: center;
+}
+
+.article-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+/*===========================*/
+/*main section*/
+/*===========================*/
+.main {
+	margin: 0 15%;
+	padding: 30px 0;
+	display: flex;
+}
+
+/*===========================*/
+/*article section*/
+/*===========================*/
+.article-section {
+	width: 100%;
+	font-family: 'Source Sans Pro', sans-serif;
+}
+
+.article {
+	padding: 20px 0;
+	border-top:1px solid rgba(0,0,0,.1);
+}
+
+.username {
+	color: #5cb85c;
+}
+
+.title {
+	font-size: 24px;
+	font-weight: bold;
+	padding: 2px 0 4px 0; 
+}
+
+.article-sescription,
+.read-more {
+	color: #bbb;
+}
+
+.read-more {
+	padding-top: 20px;
+}
+
+.fa-heart {
+	color: #5cb85c;
+	font-size: 14px;
+	margin-right: 4px;
+}
+
+.likes {
+	display: inline-block;
+	padding: 4px 10px;
+	border: 1px solid #5cb85c;
+	border-radius: 3px;
+	
+}
+
+/*==========================*/
+/*tags section*/
+/*===========================*/
+.tags-sec {
+	width: 250px;
+	background: #f3f3f3;
+	padding: 5px 10px 10px;
+	border-radius: 5px;
+	margin-left: 20px; 
+}
+
+.popular-tags {
+	padding: 10px 0;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+
+.tags {
+	background: #818a91;
+	border-radius: 10rem;
+	padding: 3px 10px;
+	margin: 2px 3px 3px 0;
+	color: #fff;
+	font-size: 16px;
+}
+
+.tags:hover {
+	background: rgba(0,0,0,0.6);
+}
+
+/*===========================*/
+/*login -section*/
+/*===========================*/
+.sign-in-sec {
+	text-align: center;
+	margin-top: 5%;
+}
+
+.input {
+	padding: .75rem 1.5rem;
+  font-size: 1.25rem;
+  border-radius: .3rem;
+  border: 1px solid rgba(0,0,0,.15);
+  margin: 10px;
+  width: 550px;
+}
+
+.input:focus {
+	border-color: dodgerblue;
+}
+
+.login-btn {
+	padding: .75rem 1.5rem;
+  font-size: 1.25rem;
+  border-radius: .3rem;
+}
+
+.sign-in-hdr {
+	font-size: 2.5rem;
+  margin-bottom: .5rem;
+  font-family: inherit;
+  font-weight: 500;
+  line-height: 1.1;
+}
+.help-link a {
+	color: #5cb85c;
+  text-decoration: none;
+}
+
+.btn {
+	color: #fff;
+  background-color: #5cb85c;
+  border-color: #5cb85c;
+  display: inline-block;
+  font-weight: 400;
+  cursor: pointer;
+  border: 1px solid transparent;
+  padding: .5rem 1rem;
+  font-size: 1rem;
+  border-radius: .25rem;
+	margin-left: 27.5%;
+}
+
+.btn:hover {
+	background-color: #5cb85c;
+  border-color: #5cb85c;
+}
