@@ -5,7 +5,8 @@ class SignUp extends React.Component {
 	state = {
 		username: "",
 		email: "",
-		password: ""
+		password: "",
+		token: ""
 	}
 
 	handleChange = (e) => {
@@ -21,7 +22,7 @@ class SignUp extends React.Component {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({user: this.state}),
-    }).then(res => res.json()).then(d => console.log(d));
+    }).then(res => res.json()).then(data => this.setState({token: data}));
   };
 
   render() {

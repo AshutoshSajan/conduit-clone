@@ -11,16 +11,16 @@ class SignIn extends React.Component {
 		// e.target.value = "";
 	}
 
-	// handleSubmit = (e) => {
-	// 	e.preventDefault();
- //    fetch('https://conduit.productionready.io/api/users', {
- //      method: 'POST',
- //      headers: {
- //        'Content-Type': 'application/json',
- //      },
- //      body: JSON.stringify({user: this.state}),
- //    }).then(res => res.json()).then(d => console.log(d));
- //  };
+	handleSubmit = (e) => {
+		e.preventDefault();
+    // fetch('https://conduit.productionready.io/api/users', {
+    //   method: 'POST',
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //   },
+    //   body: JSON.stringify({user: this.state}),
+    // }).then(res => res.json()).then(d => console.log(d));
+  };
 
   render() {
     return (
