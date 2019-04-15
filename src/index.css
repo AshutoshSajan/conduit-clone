@@ -210,3 +210,10 @@ body {
 	background-color: #5cb85c;
   border-color: #5cb85c;
 }
+
+/*user section*/
+
+.user-page {
+	width: 50%;
+	margin: 0 auto; 
+}

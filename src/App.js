@@ -5,6 +5,7 @@ import Home from './Home';
 import SignIn from './SignIn'
 import SignUp from './SignUp'
 import Header from './Header';
+import User from './User';
 
 class App extends Component {
   render() {
@@ -15,6 +16,7 @@ class App extends Component {
       		<Route exact path="/" component={Home} />
       		<Route path="/SignUp" component={SignUp} />
       		<Route path="/SignIn" component={SignIn} />
+          <Route path="/User" component={User} />
       	</Router>
       </React.Fragment>
     );

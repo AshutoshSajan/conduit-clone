@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { BrowserRouter as Router, Route , NavLink } from "react-router-dom";
 
 const Head = styled.header`
 	display: flex;
@@ -11,7 +12,9 @@ class Header extends React.Component {
   render() {
     return (
       <Head className="header">
-        <h1 className="conduit">conduit</h1>
+        <NavLink to="/Home">
+          <h1 className="conduit">conduit</h1>
+        </NavLink>
         <ul className="login-sec">
         	<li><a href="/">home</a></li>
         	<li><a href="/SignIn">signIn</a></li>

@@ -2,6 +2,7 @@ import React from 'react'
 
 class Hero extends React.Component {
   render() {
+  	console.log()
     return (
       <section className="hero-sec">
         <h2>conduit</h2>

@@ -4,7 +4,16 @@ import Tags from './Tags';
 import Hero from './Hero';
 
 class Main extends React.Component {
+	state = {
+		tags: ""
+	}
+
+	// filterTags = (v) => {
+	// 	this.setState({tags: v})
+	// }
+
   render() {
+  	// console.log(this.state);
     return (
     	<React.Fragment>
     		<Hero />
