@@ -53,6 +53,7 @@ body {
 
 .user-info img{
 	width: 30px;
+	height: 30px;
 	border-radius: 50%;
 	margin-right: 10px;
 }
@@ -94,8 +95,9 @@ body {
 }
 
 .title {
-	font-size: 24px;
-	font-weight: bold;
+	font-size: 22px;
+	font-weight: 600;
+	color: #373a3c;
 	padding: 2px 0 4px 0; 
 }
 
@@ -122,6 +124,15 @@ body {
 	
 }
 
+.article-nav {
+	display: flex;
+}
+
+.tag-list {
+	color: #5cb85c;
+	padding: 10px;
+	border-bottom: 2px solid #5cb85c;
+}
 /*==========================*/
 /*tags section*/
 /*===========================*/
@@ -211,9 +222,78 @@ body {
   border-color: #5cb85c;
 }
 
+/*=================================*/
 /*user section*/
-
+/*=================================*/
 .user-page {
 	width: 50%;
 	margin: 0 auto; 
+}
+
+.follow-btn {
+	color: #999;
+	border: 1px solid #999;
+	border-radius: 4px;
+	font-size: 18px;
+}
+
+.user-hero-sec {
+	padding: 20px 15%;
+	text-align: right;
+	background: #f3f3f3;
+}
+
+.user-profile {
+	text-align: center;
+	font-family: 'Source Sans Pro', sans-serif;
+}
+
+.user-profile img {
+	height: 100px;
+	width: 100px;
+	border-radius: 50%;
+}
+
+.name {
+	font-weight: bold;
+	font-size: 22px;
+	color: #333;
+	padding: 10px;
+}
+
+.user-hero-sec p {
+	color: #666;
+}
+/*=================================*/
+/*network error*/
+/*=================================*/
+.error {
+	background: #111;
+	color: red;
+	padding: 10px;
+	text-align: center;
+	font-size: 20px;
+	transform: translateY(-100%);
+	transition: all 1s ease-out;
+}
+
+.network-error {
+	transform: translateY(0);
+}
+
+.error-text {
+	position: absolute;
+	top: 40%;
+	left: 50%;
+	transform: translate(-50%, 50%);
+	color: transparent;
+	font-size: 20px;
+	font-weight: bold;
+	letter-spacing: 2px;
+	word-spacing: 4px;
+	transition: all 2s ease-out;
+}
+
+.show-error {
+	color: #666;
 }

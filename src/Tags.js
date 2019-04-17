@@ -14,10 +14,10 @@ class Tags extends React.Component {
 
   handleClick = (data) => {
     console.log(data);
-
-    fetch(`https://conduit.productionready.io/api/articles?tag=${data}&limit=25&offset=0`).then(res => res.json()).then(data => this.props.dispatch({ 
+    // this.state.tags
+    fetch(`https://conduit.productionready.io/api/articles?tag=${data}&limit=25&offset=0`).then(res => res.json()).then(articles => this.props.dispatch({ 
         type: "ADD_ARTICLES",
-        data: data
+        data: articles
       }))
     
   }

@@ -4,14 +4,52 @@ import { connect } from 'react-redux'
 import uuid from './uuid';
 
 class User extends React.Component {
+	state = {
+		user : "",
+		articleType: ["My Articles", "Favorited Articles"],
+	}
+
+	componentDidMount() {
+		// fetch(`https://conduit.productionready.io/api/articles?favorited=${this.state.user ? this.state.user : ""}&limit=5&offset=0`).then(res => res.json()).then(data => this.props.dispatch({
+		// 		type: "FAVORITE_ARTICLE",
+		// 		data: data
+		// 	})
+		// )
+	}
+
+	fetchData = (user) => {
+		console.log(user)
+		this.setState({user: user});
+		fetch(`https://conduit.productionready.io/api/articles?favorited=${this.state.user ? this.state.user : ""}&limit=5&offset=0`).then(res => res.json()).then(data => this.props.dispatch({
+				type: "FAVORITE_ARTICLE",
+				data: data
+			})
+		)
+	}
 	
 	render(){
 	const { user } = this.props;
-	console.log(user.articles);
-	// (user.articles ? user.articles:[]).map(v => console.log(v));
+	const userInfo = user.articles ? user.articles[0] : "";
+	console.log(this.props, "in user.js");
+
 		return(
 			<React.Fragment>
-				<Hero user={user}/>
+				<div className="user-hero-sec">
+					<figure className="user-profile">
+						<img src={userInfo ? userInfo.author.image : ""} alt="" />
+						<h3 className="name">{userInfo ? userInfo.author.username : ""}</h3>
+						<p>{userInfo ? userInfo.author.bio : ""}</p>
+					</figure>
+					<button className="follow-btn">+Follow user</button>
+				</div>
+				<ul className="article-nav user-nav" style={{margin:"0 25%"}}>
+					{this.state.articleType.map(text => {
+						return(
+							<li className="tag-list fav-article" onClick={() =>this.fetchData(userInfo ? userInfo.author.username : "")}>{text}
+							</li>)
+						})
+					}
+				</ul>
 				{
 					(user.articles ? user.articles : []).map(article => {
 						return (
@@ -19,7 +57,7 @@ class User extends React.Component {
 								<div>
 									<div className="article-header">
 										<div className="user-info">
-											<img src={article.author.image} alt="autor_image" />
+											<img src={article.author.image} alt="" />
 											<div>
 												<p className="username">{article.author.username}</p>
 				    						<p>{"article.createdAt"}</p>

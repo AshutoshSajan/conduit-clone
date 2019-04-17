@@ -1,8 +1,7 @@
 export function addArticles (state = [], action){
-	// console.log(state, action, "in reducer");
   switch (action.type) {
   	case "ADD_ARTICLES":
-  		return action.data;
+  		return { articles: action.data,	loading: action.loading };
   	default:
   		return state;
   }
@@ -18,10 +17,12 @@ export function tags (state=[], action){
 }
 
 export function user(state=[], action) {
-	console.log(state, action, "in user reducer");
+	console.log(state,"state", action,"action" , "in user reducer")
 	switch (action.type) {
 		case "ADD_USER":
-			return action.user;
+			return [...state, {user: action.user}];
+		case "FAVORITE_ARTICLE":
+			return action.data;
 		default:
 			return state;
 	}
