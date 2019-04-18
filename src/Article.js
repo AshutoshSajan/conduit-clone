@@ -25,6 +25,7 @@ class Article extends React.Component {
 	}
 
 	handleClick = (name) => {
+		console.log(name, "in article user articles")
 		fetch(`https://conduit.productionready.io/api/articles?author=${name}&limit=5&offset=0`).then(res => res.json()).then(data => this.props.dispatch(
 				{
 					type: "ADD_USER",

@@ -20,7 +20,7 @@ export function user(state=[], action) {
 	console.log(state,"state", action,"action" , "in user reducer")
 	switch (action.type) {
 		case "ADD_USER":
-			return [...state, {user: action.user}];
+			return action.user;
 		case "FAVORITE_ARTICLE":
 			return action.data;
 		default:

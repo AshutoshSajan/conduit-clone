@@ -6,21 +6,17 @@ import uuid from './uuid';
 class User extends React.Component {
 	state = {
 		user : "",
+		UserFavourit: "",
 		articleType: ["My Articles", "Favorited Articles"],
 	}
 
-	componentDidMount() {
-		// fetch(`https://conduit.productionready.io/api/articles?favorited=${this.state.user ? this.state.user : ""}&limit=5&offset=0`).then(res => res.json()).then(data => this.props.dispatch({
-		// 		type: "FAVORITE_ARTICLE",
-		// 		data: data
-		// 	})
-		// )
+	activeClass = () => {
+		console.log("active")
 	}
 
 	fetchData = (user) => {
-		console.log(user)
-		this.setState({user: user});
-		fetch(`https://conduit.productionready.io/api/articles?favorited=${this.state.user ? this.state.user : ""}&limit=5&offset=0`).then(res => res.json()).then(data => this.props.dispatch({
+		this.setState({UserFavourit: user});
+		fetch(`https://conduit.productionready.io/api/articles?favorited=${this.state.UserFavourit ? this.state.UserFavourit : ""}&limit=5&offset=0`).then(res => res.json()).then(data => this.props.dispatch({
 				type: "FAVORITE_ARTICLE",
 				data: data
 			})
@@ -30,7 +26,7 @@ class User extends React.Component {
 	render(){
 	const { user } = this.props;
 	const userInfo = user.articles ? user.articles[0] : "";
-	console.log(this.props, "in user.js");
+	// console.log(this.props, "in user.js");
 
 		return(
 			<React.Fragment>
@@ -45,7 +41,12 @@ class User extends React.Component {
 				<ul className="article-nav user-nav" style={{margin:"0 25%"}}>
 					{this.state.articleType.map(text => {
 						return(
-							<li className="tag-list fav-article" onClick={() =>this.fetchData(userInfo ? userInfo.author.username : "")}>{text}
+							<li key={uuid()} className="tag-list fav-article" onClick={() => {
+								return (
+									this.fetchData((userInfo ? userInfo.author.username : ""))
+									this.activeClass()
+									)}
+								>{text}
 							</li>)
 						})
 					}

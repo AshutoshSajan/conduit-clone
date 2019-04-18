@@ -98,12 +98,12 @@ body {
 	font-size: 22px;
 	font-weight: 600;
 	color: #373a3c;
-	padding: 2px 0 4px 0; 
+	padding: 8px 0; 
 }
 
 .article-sescription,
 .read-more {
-	color: #bbb;
+	color: #999;
 }
 
 .read-more {
