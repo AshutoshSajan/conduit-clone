@@ -2,9 +2,9 @@ import React from 'react'
 
 class Hero extends React.Component {
   render() {
-  	console.log(this.props)
+  	// console.log(this.props)
   	const { user } = this.props;
-  	console.log(user)
+  	// console.log(user)
     return (
       <section className="hero-sec">
       	{

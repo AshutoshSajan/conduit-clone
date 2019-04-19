@@ -1,4 +1,5 @@
 import React from 'react'
+import { withRouter } from "react-router-dom";
 
 class SignUp extends React.Component {
 
@@ -22,7 +23,13 @@ class SignUp extends React.Component {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({user: this.state}),
-    }).then(res => res.json()).then(data => this.setState({token: data}));
+    }).then(res => res.json()).then(data => {
+    	console.log(data.user);
+    	localStorage.setItem("jwt", data.user.token)
+    	var jwt = localStorage.jwt;
+    	this.props.history.push("/");
+    	// this.setState({token: data})
+    });
   };
 
   render() {
@@ -54,4 +61,4 @@ class SignUp extends React.Component {
 // function mapStateToProps(state) {
 // 	return { tags: state.tags }
 // }
-export default SignUp;
+export default withRouter(SignUp);

@@ -2,6 +2,8 @@ import React from 'react';
 import Hero from './Hero';
 import { connect } from 'react-redux'
 import uuid from './uuid';
+import { Link } from "react-router-dom";
+
 
 class User extends React.Component {
 	state = {
@@ -12,6 +14,7 @@ class User extends React.Component {
 
 	activeClass = () => {
 		console.log("active")
+		this.setState({active: true})
 	}
 
 	fetchData = (user) => {
@@ -42,11 +45,12 @@ class User extends React.Component {
 					{this.state.articleType.map(text => {
 						return(
 							<li key={uuid()} className="tag-list fav-article" onClick={() => {
-								return (
-									this.fetchData((userInfo ? userInfo.author.username : ""))
-									this.activeClass()
-									)}
-								>{text}
+									this.fetchData((userInfo ? userInfo.author.username : ""));
+									this.activeClass();
+									}}
+								>
+
+								<p className='active'> {text} </p>
 							</li>)
 						})
 					}

@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-// import { BrowserRouter as Router, Route , NavLink } from "react-router-dom";
+import { BrowserRouter as Router, Route , NavLink, Link } from "react-router-dom";
 
 const Head = styled.header`
 	display: flex;
@@ -13,12 +13,12 @@ class Header extends React.Component {
     return (
       <Head className="header">
         <h1>
-          <a className="conduit" href="/">conduit</a>
+          <Link className="conduit" to="/">conduit</Link>
         </h1>
         <ul className="login-sec">
-        	<li><a href="/">home</a></li>
-        	<li><a href="/SignIn">signIn</a></li>
-        	<li><a href="/SignUp">signUp</a></li>
+        	<li><a href="/" >home</a></li>
+        	<li><a href="/SignIn" >signIn</a></li>
+        	<li><a href="/SignUp" >signUp</a></li>
         </ul>
       </Head>
     );

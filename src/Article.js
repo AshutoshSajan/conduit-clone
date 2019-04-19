@@ -25,7 +25,7 @@ class Article extends React.Component {
 	}
 
 	handleClick = (name) => {
-		console.log(name, "in article user articles")
+		// console.log(name, "in article user articles")
 		fetch(`https://conduit.productionready.io/api/articles?author=${name}&limit=5&offset=0`).then(res => res.json()).then(data => this.props.dispatch(
 				{
 					type: "ADD_USER",
@@ -34,8 +34,12 @@ class Article extends React.Component {
 			));
 	}
 
-	handlePost = (obj) => {
-		console.log(obj)
+	handlePost = (slug) => {
+		// console.log(slug)
+		fetch(`https://conduit.productionready.io/api/articles/${slug}`).then(res => res.json()).then(data => {
+				console.log(data, "slug data in article sec");
+				this.props.dispatch({type: "SHOW_POST", post: data.article})
+		})
 	}
 
   render() {
@@ -73,9 +77,9 @@ class Article extends React.Component {
 				    				</div>
 		    					</div>
 		    					<NavLink to="/Post">
-			    					<h3 className="title" onClick={() => this.handlePost(article)}>{article.title}</h3>
-			    					<p className="article-description" onClick={() => this.handlePost(article)}>{article.description}</p>
-			    					<p className="read-more" onClick={() => this.handlePost(article)}> read more...</p>
+			    					<h3 className="title" onClick={() => this.handlePost(article.slug)}>{article.title}</h3>
+			    					<p className="article-description" onClick={() => this.handlePost(article.slug)}>{article.description}</p>
+			    					<p className="read-more" onClick={() => this.handlePost(article.slug)}> read more...</p>
 			    				</NavLink>
 	    					</div>
 	    				)

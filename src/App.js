@@ -6,7 +6,25 @@ import SignIn from './SignIn'
 import SignUp from './SignUp'
 import Header from './Header';
 import User from './User';
+import Post from './Post';
 import './Loading.css';
+// import { Store } from './Store';
+
+// default login condition
+// if(localStorage.jwt){
+//   fetch('https://conduit.productionready.io/api/users', {
+//     method: 'POST',
+//     headers: {
+//       'Content-Type': 'application/json',
+//     },
+//     body: JSON.stringify({user: this.state}),
+//   }).then(res => res.json()).then(data => {
+//     // console.log(data.user);
+//     localStorage.setItem("jwt", data.user.token)
+//     var jwt = localStorage.jwt;
+//     this.props.history.push("/");
+// }
+
 
 class App extends Component {
   state = {
@@ -32,6 +50,7 @@ class App extends Component {
               <Route path="/SignUp" component={SignUp} />
               <Route path="/SignIn" component={SignIn} />
               <Route path="/User" component={User} />
+              <Route path="/Post" component={Post} />
             </Router>
           </>
         ): 

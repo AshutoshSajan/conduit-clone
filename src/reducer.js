@@ -17,7 +17,6 @@ export function tags (state=[], action){
 }
 
 export function user(state=[], action) {
-	console.log(state,"state", action,"action" , "in user reducer")
 	switch (action.type) {
 		case "ADD_USER":
 			return action.user;
@@ -27,4 +26,15 @@ export function user(state=[], action) {
 			return state;
 	}
 }
+
+export function post (state=[], action){
+	// console.log(state,"state", action,"action" , "in post reducer");
+	switch (action.type) {
+		case "SHOW_POST":
+			return action.post;
+		default:
+			return state;
+	}
+}
+
 
