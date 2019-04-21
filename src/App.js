@@ -1,29 +1,48 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import {BrowserRouter as Router, Route } from "react-router-dom";
+import {BrowserRouter as Router, Route, withRouter } from "react-router-dom";
 import Home from './Home';
 import SignIn from './SignIn'
 import SignUp from './SignUp'
 import Header from './Header';
 import User from './User';
 import Post from './Post';
+import NewPost from './NewPost';
+import Settings from './Settings';
+import Profile from './Profile';
 import './Loading.css';
-// import { Store } from './Store';
+import { store } from './Store';
 
-// default login condition
-// if(localStorage.jwt){
-//   fetch('https://conduit.productionready.io/api/users', {
-//     method: 'POST',
-//     headers: {
-//       'Content-Type': 'application/json',
-//     },
-//     body: JSON.stringify({user: this.state}),
-//   }).then(res => res.json()).then(data => {
-//     // console.log(data.user);
-//     localStorage.setItem("jwt", data.user.token)
-//     var jwt = localStorage.jwt;
-//     this.props.history.push("/");
-// }
+export function chekckUser(){
+  if(localStorage.jwt){
+    const {jwt} = localStorage;
+    fetch('https://conduit.productionready.io/api/user',{
+    headers: {
+      "Content-Type": "application/json",
+      "authorization": `Token ${jwt}`
+    }}).then(res => res.json()).then(data => {
+      store.dispatch({type: 'ADD_USER_INFO', payload: data.user});
+      userProfile(data.user.username);
+    })
+  }
+}
+
+function userProfile (name){
+  fetch(`https://conduit.productionready.io/api/articles?author=${name}&limit=5&offset=0`).then(res => res.json()).then(articles => {
+      store.dispatch({type:"MY_ARTICLES", articles: articles})
+    });
+  fetch(`https://conduit.productionready.io/api/profiles/${name}`).then(res => res.json()).then(user => {
+      store.dispatch({type:"MY_PROFILE", user: user});
+  });
+  fetch(`https://conduit.productionready.io/api/articles?favorited=${name}&limit=5&offset=0`).then(res => res.json()).then(favArticles => {
+    console.log(favArticles, "in app");
+      store.dispatch({
+        type: "MY_FAVORITE_ARTICLES",
+        articles: favArticles,
+      })}
+    )
+}
+chekckUser();
 
 
 class App extends Component {
@@ -51,6 +70,9 @@ class App extends Component {
               <Route path="/SignIn" component={SignIn} />
               <Route path="/User" component={User} />
               <Route path="/Post" component={Post} />
+              <Route path="/NewPost" component={NewPost} />
+              <Route path="/Settings" component={Settings} />
+              <Route path="/Profile" component={Profile} />  
             </Router>
           </>
         ): 
@@ -66,4 +88,4 @@ class App extends Component {
   }
 }
 
-export default connect((state) => ({data: state})) (App);
+export default withRouter(connect((state) => ({data: state})) (App));

@@ -1,5 +1,4 @@
 import React from 'react'
-import { withRouter } from "react-router-dom";
 
 class SignUp extends React.Component {
 
@@ -25,10 +24,11 @@ class SignUp extends React.Component {
       body: JSON.stringify({user: this.state}),
     }).then(res => res.json()).then(data => {
     	console.log(data.user);
-    	localStorage.setItem("jwt", data.user.token)
-    	var jwt = localStorage.jwt;
+    	if(data.user){
+    		localStorage.setItem("jwt", data.user.token)
+    	} 
+    	this.props.dispatch({type: 'ADD_USER_INFO', user: data.user});
     	this.props.history.push("/");
-    	// this.setState({token: data})
     });
   };
 
@@ -61,4 +61,4 @@ class SignUp extends React.Component {
 // function mapStateToProps(state) {
 // 	return { tags: state.tags }
 // }
-export default withRouter(SignUp);
+export default SignUp;

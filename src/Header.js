@@ -1,28 +1,44 @@
 import React from 'react'
-import styled from 'styled-components'
-import { BrowserRouter as Router, Route , NavLink, Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { Link, NavLink } from "react-router-dom";
 
-const Head = styled.header`
-	display: flex;
-	justify-content: space-between;
-	margin: 0 15%;
-	padding: 15px 0;
-`
 class Header extends React.Component {
   render() {
+    console.log(this.props)
     return (
-      <Head className="header">
+      <section className="header">
         <h1>
-          <Link className="conduit" to="/">conduit</Link>
+          <Link to='/'>
+            <span className="conduit">conduit</span>
+          </Link>
         </h1>
-        <ul className="login-sec">
-        	<li><a href="/" >home</a></li>
-        	<li><a href="/SignIn" >signIn</a></li>
-        	<li><a href="/SignUp" >signUp</a></li>
-        </ul>
-      </Head>
+        <div className="login-sec">
+        	<a href="/">home</a>
+          {
+            this.props.UserInfo ? 
+            <>
+              <a href='/NewPost'>
+                <i className="far fa-edit"></i>
+                <span>New Post</span>
+              </a>
+              <a href='/Settings'>
+                  <i className="fas fa-cog"></i>
+                  <span>Settings</span>
+              </a>
+              <a href='/Profile'>
+                <span> Profile </span>
+              </a>
+            </>
+            :
+            <>
+              <a> href="/SignIn" >signIn</a>
+              <a> href="/SignUp" >signUp</a>
+            </> 
+          } 
+        </div>
+      </section>
     );
   }
 }
 
-export default Header;
+export default connect(({UserInfo})=>({UserInfo})) (Header);

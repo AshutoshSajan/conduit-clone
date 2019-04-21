@@ -86,6 +86,14 @@ class Article extends React.Component {
     				})
     			)
       	}
+
+      	{
+      		<nav>
+	      		<ul>
+							<li>pagination</li>
+	      		</ul>
+	      	</nav>
+      	}
       </section>
     );
   }

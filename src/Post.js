@@ -44,6 +44,28 @@ class Post extends React.Component {
       			</div>
       		</ul>
       	</section>
+
+        {
+          // <>
+          //   <div>
+          //     <textarea rows="8" cols="20" placeholder="Write a comment..."></textarea>
+          //     <div>
+          //       <img src="" alt="" />
+          //       <button>Post Comment</button>
+          //     </div>
+          //   </div>
+
+          //   <div>
+          //     <p></p>
+          //     <div>
+          //       <img src="" alt="" />
+          //       <span>username</span>
+          //       <span>date</span>
+          //     </div>
+          //   </div>
+          // </>
+
+        }
       </React.Fragment>
     );
   }

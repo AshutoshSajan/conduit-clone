@@ -68,3 +68,17 @@ button, a {
 /*.input::-webkit-input-placeholder {
  	color: #000;
 }*/
+
+/*clearfix*/
+.cf:before,
+.cf:after {
+  content: "";
+  display: table;
+}
+.cf:after {
+  clear: both;
+}
+.cf {
+  clear: both;
+  *zoom: 1;
+}

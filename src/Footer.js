@@ -4,10 +4,9 @@ class Footer extends React.Component {
   render() {
     return (
       <div className="Footer">
-        Footer
+        <h3> <i>git icon</i>View on Github</h3>
       </div>
     );
   }
 }
-// (state)=>({ data: state })
 export default Footer;
