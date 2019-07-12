@@ -30,10 +30,10 @@ class Header extends React.Component {
               </a>
             </>
             :
-            <>
-              <a> href="/SignIn" >signIn</a>
-              <a> href="/SignUp" >signUp</a>
-            </> 
+            <div>
+              <a href="/SignIn" >signIn</a>
+              <a href="/SignUp" >signUp</a>
+            </div>
           } 
         </div>
       </section>

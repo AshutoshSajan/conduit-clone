@@ -24,9 +24,11 @@ class Post extends React.Component {
           :""
         }
       	<div>
-      		<h2></h2>
-      		<p></p>
-      		<h2></h2>
+      		{
+            // <h2></h2>
+        		// <p></p>
+        		// <h2></h2>
+          }
       	</div>
       	<section>
       		<p>
