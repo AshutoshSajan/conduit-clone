@@ -1,10 +1,10 @@
 import React from 'react'
 import { connect } from "react-redux";
-import { Link, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 class Header extends React.Component {
   render() {
-    console.log(this.props)
+    // console.log(this.props, "headre props");
     return (
       <section className="header">
         <h1>
@@ -13,27 +13,27 @@ class Header extends React.Component {
           </Link>
         </h1>
         <div className="login-sec">
-        	<a href="/">home</a>
+        	<Link to="/">home</Link>
           {
             this.props.UserInfo ? 
-            <>
-              <a href='/NewPost'>
-                <i className="far fa-edit"></i>
-                <span>New Post</span>
-              </a>
-              <a href='/Settings'>
-                  <i className="fas fa-cog"></i>
-                  <span>Settings</span>
-              </a>
-              <a href='/Profile'>
-                <span> Profile </span>
-              </a>
-            </>
+              <div>
+                <Link to='/NewPost'>
+                  <i className="far fa-edit"></i>
+                  <span>New Post</span>
+                </Link>
+                <Link to='/Settings'>
+                    <i className="fas fa-cog"></i>
+                    <span>Settings</span>
+                </Link>
+                <Link to='/Profile'>
+                  <span> Profile </span>
+                </Link>
+              </div>
             :
-            <div>
-              <a href="/SignIn" >signIn</a>
-              <a href="/SignUp" >signUp</a>
-            </div>
+              <div>
+                <Link to="/SignIn">signIn</Link>
+                <Link to="/SignUp">signUp</Link>
+              </div>
           } 
         </div>
       </section>

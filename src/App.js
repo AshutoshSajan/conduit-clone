@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import {BrowserRouter as Router, Route, withRouter } from "react-router-dom";
+import { BrowserRouter as Router, Route, withRouter, Switch } from "react-router-dom";
+
+import './Loading.css';
 import Home from './Home';
 import SignIn from './SignIn'
 import SignUp from './SignUp'
@@ -10,7 +12,6 @@ import Post from './Post';
 import NewPost from './NewPost';
 import Settings from './Settings';
 import Profile from './Profile';
-import './Loading.css';
 import { store } from './Store';
 
 export function chekckUser(){
@@ -28,6 +29,23 @@ export function chekckUser(){
 }
 
 function userProfile (name){
+  console.log(name, "name");
+
+  Promise.all([
+    fetch(`https://conduit.productionready.io/api/articles?author=${name}&limit=5&offset=0`),
+    fetch(`https://conduit.productionready.io/api/profiles/${name}`),
+    fetch(`https://conduit.productionready.io/api/articles?favorited=${name}&limit=5&offset=0`)
+  ])
+  .then(res => {
+    res.map(v => {
+      console.log(v, "val");
+      return v.json();
+    });
+  })
+  .then(data => {
+    console.log(data)
+  });
+
   fetch(`https://conduit.productionready.io/api/articles?author=${name}&limit=5&offset=0`).then(res => res.json()).then(articles => {
       store.dispatch({type:"MY_ARTICLES", articles: articles})
     });
@@ -57,32 +75,32 @@ class App extends Component {
   }
 
   render() {
-    // console.log(this.state);
+    // console.log(this.state, "app state");
     return (
       <React.Fragment>
-      {
-        navigator.onLine ? 
-        ( <>
-            <Header />
-            <Router>
-              <Route exact path="/" component={Home} />
-              <Route path="/SignUp" component={SignUp} />
-              <Route path="/SignIn" component={SignIn} />
-              <Route path="/User" component={User} />
-              <Route path="/Post" component={Post} />
-              <Route path="/NewPost" component={NewPost} />
-              <Route path="/Settings" component={Settings} />
-              <Route path="/Profile" component={Profile} />  
-            </Router>
-          </>
-        ): 
-        <>
-          <p className={`error ${this.state.class}`}>No internet connection</p>
-          <p className={`error-text ${this.state.error}`}>
-            Please check your network connection
-          </p>
-        </>      
-      }
+        {
+          navigator.onLine ? 
+            <div>
+              <Header />
+              <Switch>
+                <Route path="/" exact component={Home} />
+                <Route path="/SignUp" component={SignUp} />
+                <Route path="/SignIn" component={SignIn} />
+                <Route path="/User" component={User} />
+                <Route path="/Post" component={Post} />
+                <Route path="/NewPost" component={NewPost} />
+                <Route path="/Settings" component={Settings} />
+                <Route path="/Profile" component={Profile} />  
+              </Switch>
+            </div>
+            : 
+            <div>
+              <p className={`error ${this.state.class}`}>No internet connection</p>
+              <p className={`error-text ${this.state.error}`}>
+                Please check your network connection
+              </p>
+            </div>      
+        }
       </React.Fragment> 
     );
   }

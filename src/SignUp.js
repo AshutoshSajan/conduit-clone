@@ -1,4 +1,5 @@
 import React from 'react'
+import { connect } from 'react-redux';
 
 class SignUp extends React.Component {
 
@@ -58,7 +59,8 @@ class SignUp extends React.Component {
   }
 }
 
-// function mapStateToProps(state) {
-// 	return { tags: state.tags }
-// }
-export default SignUp;
+function mapStateToProps(state) {
+	return { tags: state.tags }
+}
+
+export default connect(mapStateToProps)(SignUp);
