@@ -12,7 +12,6 @@ class SignUp extends React.Component {
 
 	handleChange = (e) => {
 		this.setState({[e.target.name]: e.target.value})
-		// e.target.value = "";
 	}
 
 	handleSubmit = (e) => {
@@ -38,8 +37,7 @@ class SignUp extends React.Component {
 
   render() {
   	var err = this.state.errors || "";
-  	console.log(err, "in rndr");
-
+  	
     return (
     	<React.Fragment>
 	      <section className="sign-in-sec">
