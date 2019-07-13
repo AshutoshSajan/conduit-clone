@@ -1,6 +1,16 @@
 import React, { Component } from 'react';
 
 export default class Settings extends Component {
+
+	handleUpdate = () => {
+
+	}
+
+	handleLogout = () => {
+		localStorage.removeItem("jwt");
+		this.props.history.push("/");
+	}
+
 	render() {
 		return (
 			<section className="settings-sec">
@@ -28,7 +38,7 @@ export default class Settings extends Component {
 				</form>
 				<div className="logout-sec cf">
 					<hr/>
-					<button className="btn logout-btn" type="submit">Or click here to logout.</button>
+					<button className="btn logout-btn" type="submit" onClick={this.handleLogout}>Or click here to logout.</button>
 				</div>
 			</section>
 		);

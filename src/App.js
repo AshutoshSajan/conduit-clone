@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import { BrowserRouter as Router, Route, withRouter, Switch } from "react-router-dom";
+import { Route, withRouter, Switch } from "react-router-dom";
 
 import './Loading.css';
 import Home from './Home';
@@ -29,37 +29,23 @@ export function chekckUser(){
 }
 
 function userProfile (name){
-  console.log(name, "name");
-
-  Promise.all([
-    fetch(`https://conduit.productionready.io/api/articles?author=${name}&limit=5&offset=0`),
-    fetch(`https://conduit.productionready.io/api/profiles/${name}`),
-    fetch(`https://conduit.productionready.io/api/articles?favorited=${name}&limit=5&offset=0`)
-  ])
-  .then(res => {
-    res.map(v => {
-      console.log(v, "val");
-      return v.json();
-    });
-  })
-  .then(data => {
-    console.log(data)
-  });
-
   fetch(`https://conduit.productionready.io/api/articles?author=${name}&limit=5&offset=0`).then(res => res.json()).then(articles => {
+      console.log(articles, "articles in app");
       store.dispatch({type:"MY_ARTICLES", articles: articles})
     });
   fetch(`https://conduit.productionready.io/api/profiles/${name}`).then(res => res.json()).then(user => {
+      console.log(user, "user in app");
       store.dispatch({type:"MY_PROFILE", user: user});
   });
   fetch(`https://conduit.productionready.io/api/articles?favorited=${name}&limit=5&offset=0`).then(res => res.json()).then(favArticles => {
-    console.log(favArticles, "in app");
+    console.log(favArticles, "favArticles in app");
       store.dispatch({
         type: "MY_FAVORITE_ARTICLES",
         articles: favArticles,
       })}
     )
 }
+
 chekckUser();
 
 
@@ -75,7 +61,6 @@ class App extends Component {
   }
 
   render() {
-    // console.log(this.state, "app state");
     return (
       <React.Fragment>
         {

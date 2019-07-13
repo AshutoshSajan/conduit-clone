@@ -1,6 +1,6 @@
 import React from 'react'
-import NewPost from'./NewPost';
-import Settings from './Settings';
+// import NewPost from'./NewPost';
+// import Settings from './Settings';
 
 class SignIn extends React.Component {
 	state = {
@@ -18,19 +18,22 @@ class SignIn extends React.Component {
 	  fetch('https://conduit.productionready.io/api/user',{
 			headers: {
 		    "Content-Type": "application/json",
-		    "authorization": `Token ${jwt}`
+		    "Authorization": `Token ${jwt}`
 		  }}).then(res => res.json()).then(data => {
 		  	console.log(data,'in signin');
 		  	this.props.dispatch({type: 'ADD_USER', payload: data.user});
 		  	this.props.history.push('/')
 		  })
+		  .catch(err => console.log(err, "sighnup err"));
   };
 
   render() {
     return (
     	<React.Fragment>
-    		<NewPost />
-    		<Settings />
+    	{
+    		// <NewPost />
+    		// <Settings />
+    	}
 	      <section className="sign-in-sec">
 	      	<h1 className="sign-in-hdr">Sign In</h1>
 	      	<p className="help-link">

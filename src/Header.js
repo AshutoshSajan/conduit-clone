@@ -4,7 +4,9 @@ import { Link } from "react-router-dom";
 
 class Header extends React.Component {
   render() {
-    // console.log(this.props, "headre props");
+    console.log(this.props, "header props");
+    var user = this.props.UserInfo || "";
+
     return (
       <section className="header">
         <h1>
@@ -26,7 +28,7 @@ class Header extends React.Component {
                     <span>Settings</span>
                 </Link>
                 <Link to='/Profile'>
-                  <span> Profile </span>
+                  <span> { user && user.username ? user.username :"Profile" } </span>
                 </Link>
               </div>
             :
