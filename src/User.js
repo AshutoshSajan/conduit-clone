@@ -20,7 +20,9 @@ class User extends React.Component {
 	fetchData = (user = "") => {
 		console.log(user);
 		this.setState({UserFavourit: user});
-		fetch(`https://conduit.productionready.io/api/articles?favorited=${user}&limit=5&offset=0`).then(res => res.json()).then(data => this.props.dispatch({
+		fetch(`https://conduit.productionready.io/api/articles?favorited=${user}&limit=5&offset=0`)
+		.then(res => res.json())
+		.then(data => this.props.dispatch({
 				type: "FAVORITE_ARTICLE",
 				data: data
 			})

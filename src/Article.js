@@ -1,8 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux';
 import uuid from './uuid';
-import FontAwesome from 'react-fontawesome';
-import { BrowserRouter as Router, Route , NavLink } from "react-router-dom";
+// import FontAwesome from 'react-fontawesome';
+import { NavLink } from "react-router-dom";
 import Loading from './Loading';
 
 class Article extends React.Component {
@@ -17,34 +17,44 @@ class Article extends React.Component {
 			loading: true
 		})
 
-		fetch("https://conduit.productionready.io/api/articles").then(res => res.json()).then(data => this.props.dispatch({
+		fetch("https://conduit.productionready.io/api/articles")
+			.then(res => res.json())
+			.then(data => {
+				this.props.dispatch({
 				type: "ADD_ARTICLES",
 				data: data,
 				loading: false,
-		}))
+			})
+		})
 	}
 
 	handleClick = (name) => {
-		// console.log(name, "in article user articles")
-		fetch(`https://conduit.productionready.io/api/articles?author=${name}&limit=5&offset=0`).then(res => res.json()).then(data => this.props.dispatch(
-				{
-					type: "ADD_USER",
-				 	user: data
-				}
-			));
+		fetch(`https://conduit.productionready.io/api/articles?author=${name}&limit=5&offset=0`)
+		.then(res => res.json())
+		.then(data => {
+			this.props.dispatch({
+				type: "ADD_USER",
+			 	user: data
+			})
+		});
 	}
 
 	handlePost = (slug) => {
-		// console.log(slug)
-		fetch(`https://conduit.productionready.io/api/articles/${slug}`).then(res => res.json()).then(data => {
-				console.log(data, "slug data in article sec");
-				this.props.dispatch({type: "SHOW_POST", post: data.article})
+		// console.log(slug);
+		fetch(`https://conduit.productionready.io/api/articles/${slug}`)
+		.then(res => res.json())
+		.then(data => {
+			console.log(data, "slug data in article sec");
+			this.props.dispatch({
+				type: "SHOW_POST", post: data.article
+			})
 		})
 	}
 
   render() {
   	const { articles } = this.props;	
   	const array = articles.articles ? articles.articles : []
+
     return (
       <section >
       	<ul className="article-nav">
@@ -61,7 +71,12 @@ class Article extends React.Component {
 			    							<img src={article.author.image} alt="" />
 			    							<div>
 			    								<NavLink to="/User">
-					    							<p onClick={() => this.handleClick(article.author.username)} className="username">{article.author.username}</p>
+					    							<p 
+					    								className="username"
+					    								onClick={() => this.handleClick(article.author.username)}
+					    								>
+					    								{article.author.username}
+					    							</p>
 					    						</NavLink >
 					    						<p>
 					    							{
@@ -77,9 +92,24 @@ class Article extends React.Component {
 				    				</div>
 		    					</div>
 		    					<NavLink to="/Post">
-			    					<h3 className="title" onClick={() => this.handlePost(article.slug)}>{article.title}</h3>
-			    					<p className="article-description" onClick={() => this.handlePost(article.slug)}>{article.description}</p>
-			    					<p className="read-more" onClick={() => this.handlePost(article.slug)}> read more...</p>
+			    					<h3
+			    						className="title"
+			    						onClick={() => this.handlePost(article.slug)}
+			    						>
+			    						{article.title}
+			    					</h3>
+			    					<p
+			    						className="article-description"
+			    						onClick={() => this.handlePost(article.slug)}
+			    						>
+			    						{article.description}
+			    					</p>
+			    					<p
+			    						className="read-more"
+			    						onClick={() => this.handlePost(article.slug)}
+			    						>
+			    						read more...
+			    					</p>
 			    				</NavLink>
 	    					</div>
 	    				)

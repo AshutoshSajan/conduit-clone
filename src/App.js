@@ -29,21 +29,27 @@ export function chekckUser(){
 }
 
 function userProfile (name){
-  fetch(`https://conduit.productionready.io/api/articles?author=${name}&limit=5&offset=0`).then(res => res.json()).then(articles => {
-      console.log(articles, "articles in app");
+  fetch(`https://conduit.productionready.io/api/articles?author=${name}&limit=5&offset=0`)
+  .then(res => res.json())
+  .then(articles => {
+      // console.log(articles, "articles in app");
       store.dispatch({type:"MY_ARTICLES", articles: articles})
     });
-  fetch(`https://conduit.productionready.io/api/profiles/${name}`).then(res => res.json()).then(user => {
-      console.log(user, "user in app");
+  fetch(`https://conduit.productionready.io/api/profiles/${name}`)
+  .then(res => res.json())
+  .then(user => {
+      // console.log(user, "user in app");
       store.dispatch({type:"MY_PROFILE", user: user});
   });
-  fetch(`https://conduit.productionready.io/api/articles?favorited=${name}&limit=5&offset=0`).then(res => res.json()).then(favArticles => {
-    console.log(favArticles, "favArticles in app");
-      store.dispatch({
-        type: "MY_FAVORITE_ARTICLES",
-        articles: favArticles,
-      })}
-    )
+  fetch(`https://conduit.productionready.io/api/articles?favorited=${name}&limit=5&offset=0`)
+  .then(res => res.json())
+  .then(favArticles => {
+    // console.log(favArticles, "favArticles in app");
+    store.dispatch({
+      type: "MY_FAVORITE_ARTICLES",
+      articles: favArticles,
+    })
+  })
 }
 
 chekckUser();
