@@ -24,14 +24,29 @@ class Profile extends Component {
 						</button>
 					</div>:""
 				}
-				<div className="my-articles">
+				<div className="my-articles" style={{wordWrap: 'break-word'}}>
 					<ul>
 						
 					</ul>
 					{
-						userProfile.articles && userProfile.articles.length ? <p>show article</p>
+						userProfile.articles && userProfile.articles.length
+						? userProfile.articles.map(val => (
+							<li>
+								<p>{val.title}</p>
+								<br/>
+								<p>{val.description}</p>
+								<br/>
+								<p>{val.body}</p>
+								<br/>
+								<p>
+									Tags: 
+									{val.tagList.map(tag => <span style={{margin:'0 20px'}}>{tag}</span>)}
+								</p>
+							</li>
+						))
 						: <p>No articles are here... yet.</p>
 					}
+					{console.log(userProfile.articles)}
 				</div>
 			</section>
 		);
@@ -39,6 +54,8 @@ class Profile extends Component {
 }
 
 function mapStateToPops(state){
+	console.log(state);
+	
 	return {
 		UserInfo :state.UserInfo,
 		userProfile: state.userProfile,

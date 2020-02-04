@@ -17,15 +17,16 @@ class Settings extends Component {
 	handleUpdate = (e) => {
 		e.preventDefault();
 		const { image, bio, email, username } = this.state;
+		const { jwt } = localStorage;
 
 		console.log(image, bio, email, username);
 		fetch('https://conduit.productionready.io/api/user', {
 			method: "PUT",
 			headers: {
       	"Content-Type": "application/json",
-      	"Authorization": `Token ${localStorage.jwt}`
+      	"Authorization": `Token ${jwt}`
     	},
-    	body: JSON.stringify(this.state)
+    	body: JSON.stringify({ user: this.state })
 		})
 		.then(res => res.json())
 		.then(data => console.log(data, "update data..."))
@@ -39,6 +40,7 @@ class Settings extends Component {
 	handleLogout = () => {
 		localStorage.removeItem("jwt");
 		this.props.history.push("/");
+		window.location.reload();
 	}
 
 	render() {

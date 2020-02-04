@@ -16,10 +16,13 @@ export function tags (state=[], action){
 	}
 }
 
-export function user(state=[], action) {
+export function user(state={}, action) {
 	switch (action.type) {
 		case "ADD_USER":
-			return action.user;
+			return {
+				...state,
+				...action.payload
+			}
 		case "FAVORITE_ARTICLE":
 			return action.data;
 		default:

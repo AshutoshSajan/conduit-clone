@@ -8,6 +8,7 @@ import Loading from './Loading';
 class Article extends React.Component {
 	state = {
 		tags: null,
+		toggleLike: true,
 	}
 
 	componentDidMount(){
@@ -51,6 +52,30 @@ class Article extends React.Component {
 		})
 	}
 
+	handlePostLikeUnlike = (slug) => {
+		const { toggleLike } = this.state;
+		const method = toggleLike ? 'POST': 'DELETE';
+		
+		console.log(toggleLike, 'like post called...');
+
+		fetch(`https://conduit.productionready.io/api/articles/${slug}/favorite`, {
+			method,
+			headers: {
+				"Content-Type": "application/json",
+				authorization: 'Token ' + localStorage.jwt
+      }
+		})
+		.then(res => res.json())
+		.then(data => {
+			console.log(data, "slug data in article sec");
+			this.props.dispatch({
+				type: "SHOW_POST", post: data.article
+			});
+
+			this.setState({ toggleLike: !this.state.toggleLike });
+		})
+	}
+
   render() {
   	const { articles } = this.props;	
   	const array = articles.articles ? articles.articles : []
@@ -85,7 +110,11 @@ class Article extends React.Component {
 					    						</p>
 					    					</div>
 				    					</div>
-				    					<div className="likes">
+											<div
+												className="likes"
+												style={{ cursor: 'pointer' }}
+												onClick={() => this.handlePostLikeUnlike(article.slug)}
+											>
 				    						<i className="far fa-heart"></i>
 				    						<span>{article.favoritesCount}</span>
 				    					</div>
